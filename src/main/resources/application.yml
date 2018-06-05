@@ -1,0 +1,60 @@
+server:
+  undertow:
+    buffer-size: 1024
+    direct-buffers: true
+    accesslog:
+      enabled: false
+
+  port: 9001
+
+spring:
+  profiles:
+    active: dev
+  datasource:
+    url: jdbc:mysql://106.14.202.160:3306/docker_database?characterEncoding=utf8&useSSL=false
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 123456
+    hikari:
+      connection-timeout: 30000
+      maximum-pool-size: 15
+      minimum-idle: 5
+      max-lifetime: 1800000
+      auto-commit: true
+      connection-test-query: SELECT 1
+
+  rabbitmq:
+    host: 106.14.202.160
+    port: 5672
+    username: root
+    password: 123456
+    virtual-host: /
+    connection-timeout: 60
+
+
+## 日志配置
+logging:
+  config: classpath:config/logback.xml
+#  level:
+#    com.jeff.service.service.dao: debug
+
+#mybatis:
+#  mapper-locations: classpath:mapper/**/*.xml
+#  type-aliases-package: com.jeff.service
+#  configuration:
+#      map-underscore-to-camel-case: true
+#      default-fetch-size: 10
+#      default-statement-timeout: 60
+#      log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+mapper:
+  identity: MYSQL   # 取主键的方式
+  before: true      # 主键递增
+  not-empty: true
+  style: camelhumpandlowercase
+  wrap-keyword: '{0}'
+  safe-delete: true
+  safe-update: true
+
+
+
