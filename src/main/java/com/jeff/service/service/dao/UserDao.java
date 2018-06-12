@@ -2,15 +2,14 @@ package com.jeff.service.service.dao;
 
 import com.jeff.service.model.User;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import tk.mybatis.mapper.common.Mapper;
 
 /**
  * Created by Jeff on 2018/5/27.
  */
-@Mapper
-public interface UserDao {
+public interface UserDao extends Mapper<User> {
     @Select("select * from user where id = #{uid}")
     User findById(Long uid);
 

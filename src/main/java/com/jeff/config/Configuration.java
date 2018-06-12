@@ -7,7 +7,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Lazy;
+import org.springframework.data.redis.connection.jedis.JedisConnectionFactory;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.web.context.request.async.TimeoutCallableProcessingInterceptor;
 import org.springframework.web.servlet.config.annotation.AsyncSupportConfigurer;
@@ -91,6 +91,14 @@ public class Configuration implements WebMvcConfigurer {
 //
 //    }
 
+    // ******************************************************************************** //
+
+
+    // ********************* Redis 配置 ************************************************ //
+//    @Bean
+//    public JedisConnectionFactory jedisConnectionFactory(){
+//        return new JedisConnectionFactory();
+//    }
     // ******************************************************************************** //
 
 }

@@ -31,6 +31,20 @@ spring:
     virtual-host: /
     connection-timeout: 60
 
+  redis:
+    database: 0
+    host: 192.168.100.105
+    port: 6379
+    timeout: 10000
+    #password: passwords
+    lettuce:
+          pool:
+            max-active: 200
+            max-idle: 10
+            max-wait: 3000
+            min-idle: 5
+
+
 
 ## 日志配置
 logging:
@@ -50,11 +64,13 @@ logging:
 mapper:
   identity: MYSQL   # 取主键的方式
   before: true      # 主键递增
-  not-empty: true
-  style: camelhumpandlowercase
-  wrap-keyword: '{0}'
-  safe-delete: true
-  safe-update: true
+  not-empty: true   # 按主键插入或更新时，是否判断字符串 != ''
+  style: camelhumpandlowercase  # 实体类与表中字段的映射方式：驼峰转带下划线的小写格式
+  wrap-keyword: '{0}'   # 自动配置关键字，配置后不需要使用 @Column 指定别名
+  safe-delete: true   # 删除时必须设置查询条件
+  safe-update: true   # 更新时必须设置查询条件
+  use-java-type: true   # 是否映射Java基本数据类型
+  mappers: tk.mybatis.mapper.common.Mapper
 
 
 
