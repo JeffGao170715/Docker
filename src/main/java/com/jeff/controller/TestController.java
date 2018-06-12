@@ -1,6 +1,5 @@
 package com.jeff.controller;
 
-import com.jeff.service.model.User;
 import com.jeff.service.service.dao.UserDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +16,7 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 public class TestController extends BaseController{
 
     @Autowired
-    UserDao userDao;
+    private UserDao userDao;
 
     @GetMapping("hello.json")
     public String sayHello(){
