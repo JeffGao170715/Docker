@@ -1,7 +1,7 @@
 package com.jeff;
 
 import com.jeff.service.model.User;
-import com.jeff.service.service.dao.UserDao;
+import com.jeff.service.service.dao.UserMapper;
 import com.jeff.service.service.impl.RedisTest;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -17,7 +17,7 @@ public class DockerApplicationTests {
 	private RedisTest redisTest;
 
 	@Autowired
-	private UserDao userDao;
+	private UserMapper userMapper;
 
 	@Test
 	public void contextLoads() {
@@ -31,7 +31,7 @@ public class DockerApplicationTests {
 
 	@Test
 	public void testUserMapper(){
-		User user = userDao.findById(1L); //userDao.selectByPrimaryKey(1L);
+		User user = userMapper.findById(1L); //userDao.selectByPrimaryKey(1L);
 		if(user != null){
 
 		}

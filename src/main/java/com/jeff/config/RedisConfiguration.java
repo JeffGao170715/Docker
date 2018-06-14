@@ -5,6 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.data.redis.connection.lettuce.LettuceConnectionFactory;
 import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.data.redis.serializer.RedisSerializer;
 import org.springframework.data.redis.serializer.StringRedisSerializer;
 
 /**
@@ -19,11 +20,13 @@ public class RedisConfiguration {
     public RedisTemplate<String, Object> redisTemplate(LettuceConnectionFactory lettuceConnectionFactory){
         RedisTemplate<String, Object> template = new RedisTemplate<>();
         // key 的序列化采用 StringRedisSerializer 序列化方式
-        template.setKeySerializer(new StringRedisSerializer());
-        template.setHashKeySerializer(new StringRedisSerializer());
-        // value 的序列化采用
-        template.setValueSerializer(new GenericFastJsonRedisSerializer());
-        template.setHashValueSerializer(new GenericFastJsonRedisSerializer());
+        RedisSerializer<String> keySerializer = new StringRedisSerializer();
+        template.setKeySerializer(keySerializer);
+        template.setHashKeySerializer(keySerializer);
+        // value 的序列化采用 fastjson 序列化
+        RedisSerializer<Object> valueSerializer = new GenericFastJsonRedisSerializer();
+        template.setValueSerializer(valueSerializer);
+        template.setHashValueSerializer(valueSerializer);
 
         template.setConnectionFactory(lettuceConnectionFactory);
         return template;

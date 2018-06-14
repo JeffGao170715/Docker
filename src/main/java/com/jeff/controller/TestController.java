@@ -1,6 +1,6 @@
 package com.jeff.controller;
 
-import com.jeff.service.service.dao.UserDao;
+import com.jeff.service.service.dao.UserMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -16,7 +16,7 @@ import org.springframework.web.context.request.async.WebAsyncTask;
 public class TestController extends BaseController{
 
     @Autowired
-    private UserDao userDao;
+    private UserMapper userMapper;
 
     @GetMapping("hello.json")
     public String sayHello(){
@@ -46,7 +46,7 @@ public class TestController extends BaseController{
 //            user.setMobile("13000000000");
 //            userDao.add(user);
             logger.info("1111111111");
-            return userDao.findById(uid);
+            return userMapper.findById(uid);
         });
     }
 }

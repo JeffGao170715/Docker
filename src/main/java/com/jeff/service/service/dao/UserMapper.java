@@ -9,7 +9,7 @@ import tk.mybatis.mapper.common.Mapper;
 /**
  * Created by Jeff on 2018/5/27.
  */
-public interface UserDao extends Mapper<User> {
+public interface UserMapper extends Mapper<User> {
     @Select("select * from user where id = #{uid}")
     User findById(Long uid);
 
